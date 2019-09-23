@@ -35,8 +35,9 @@ class mainService(tk.Frame):
     def sendText(self):   # 获取发送消息的内容
         msg = self.inputMsg.get('1.0','end-1c')   # 从inputMsg组件中获得内容
         self.textArea.config(state='normal')
+        self.textArea.insert(tk.INSERT, 'user2:\n')  # 署名
         self.textArea.insert(tk.END,msg+'\n')
-        # self.textArea.insert(tk.INSERT, 'user2')  # 署名
+
         self.textArea.see(tk.END)    # 页面拉到最底部
         self.textArea.config(state='disabled')
         self.inputMsg.delete(0.0,tk.END)  # 清空输入框
@@ -52,7 +53,7 @@ class mainService(tk.Frame):
         while True:
             msg_recv = conn.recv(1024).decode('utf-8')+'\n'
             self.textArea.config(state='normal')
-            # self.textArea.insert(tk.END,'user1')
+            self.textArea.insert(tk.END,'user1:\n')
             self.textArea.insert(tk.END, msg_recv)
             self.textArea.see(tk.END)
             self.textArea.config(state='disabled')
